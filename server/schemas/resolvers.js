@@ -4,6 +4,7 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
 	Query: {
+		//fixed
 		me: async (parent, args, context) => {
 			if (context.user) {
 				return User.findOne({ _id: context.user._id }).populate("thoughts");
@@ -39,31 +40,29 @@ const resolvers = {
 		saveBook: async (parent, { bookData }, context) => {
 			if (context.user) {
 				const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $push: { savedBooks: bookData} },
-                    { new: true, runValidators: true }
-                )
+					{ _id: context.user._id },
+					{ $push: { savedBooks: bookData } },
+					{ new: true, runValidators: true }
+				);
 
-                return updatedUser;
-				
+				return updatedUser;
 			}
 			throw new AuthenticationError("You need to be logged in!");
 		},
+		//fix
 		removeBook: async (parent, { bookId }, context) => {
 			if (context.user) {
-                if (context.user) {
-                    const updatedUser = await await User.findOneAndUpdate(
-                        { _id: context.user._id },
-                        { $pull: { savedBooks: {bookId}} },
-                        { new: true, runValidators: true }
-                    )
-    
-                    return updatedUser;
-                    
-                }
-                throw new AuthenticationError("You need to be logged in!");
+				if (context.user) {
+					const updatedUser = await await User.findOneAndUpdate(
+						{ _id: context.user._id },
+						{ $pull: { savedBooks: { bookId } } },
+						{ new: true, runValidators: true }
+					);
+
+					return updatedUser;
+				}
+				throw new AuthenticationError("You need to be logged in!");
 			}
-			throw new AuthenticationError("You need to be logged in!");
 		},
 	},
 };
