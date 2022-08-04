@@ -38,9 +38,9 @@ const LoginForm = () => {
 		}
 
 		setUserFormData({
-			username: "",
 			email: "",
 			password: "",
+			username
 		});
 	};
 
@@ -62,7 +62,7 @@ const LoginForm = () => {
 						placeholder="Your email"
 						name="email"
 						onChange={handleInputChange}
-						value={userFormData.email}
+						value={LoginForm.email}
 						required
 					/>
 					<Form.Control.Feedback type="invalid">
@@ -77,7 +77,7 @@ const LoginForm = () => {
 						placeholder="Your password"
 						name="password"
 						onChange={handleInputChange}
-						value={userFormData.password}
+						value={LoginForm.password}
 						required
 					/>
 					<Form.Control.Feedback type="invalid">
