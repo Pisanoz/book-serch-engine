@@ -40,7 +40,6 @@ const LoginForm = () => {
 		setUserFormData({
 			email: "",
 			password: "",
-			username
 		});
 	};
 
