@@ -4,7 +4,7 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
 	Query: {
-		//fixed
+		
 		me: async (parent, args, context) => {
 			if (context.user) {
 				return User.findOne({ _id: context.user._id }).populate("thoughts");
@@ -50,7 +50,7 @@ const resolvers = {
 			}
 			throw new AuthenticationError("You need to be logged in!");
 		},
-		//fix
+		
 		removeBook: async (parent, { bookId }, context) => {
 			if (context.user) {
 				if (context.user) {
